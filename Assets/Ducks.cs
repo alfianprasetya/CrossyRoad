@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class Ducks : MonoBehaviour
 {
-    [SerializeField, Range(0, 1)] float moveDuration;
-    [SerializeField, Range(0, 1)] float jumpHeight;
+    [SerializeField, Range(0, 1)] float moveDuration = 0.1f;
+    [SerializeField, Range(0, 1)] float jumpHeight = 0.5f;
     void Update()
     {
         if(DOTween.IsTweening(transform))
