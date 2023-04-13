@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Ducks : MonoBehaviour
 {
     [SerializeField, Range(0, 1)] float moveDuration;
+    [SerializeField, Range(0, 1)] float jumpHeight;
     void Update()
     {
         if(DOTween.IsTweening(transform))
@@ -38,6 +39,11 @@ public class Ducks : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        transform.DOMove(transform.position + direction, 0.1f);
+        transform.DOMoveZ(transform.position.z + direction.z, moveDuration);
+        transform.DOMoveX(transform.position.x + direction.x, moveDuration);
+
+        var seq = DOTween.Sequence();
+        seq.Append(transform.DOMoveY(jumpHeight, moveDuration * 0.5f));
+        seq.Append(transform.DOMoveY(0, moveDuration * 0.5f));
     }
 }
